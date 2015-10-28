@@ -1,0 +1,28 @@
+-- LIKE
+
+-- world database
+SELECT * FROM City WHERE Name LIKE 'Z%' ORDER BY Name;
+SELECT * FROM City WHERE Name ILIKE 'z%' ORDER BY Name;
+SELECT * FROM City WHERE Name ILIKE '_w%' ORDER BY Name;
+SELECT * FROM City WHERE Name SIMILAR TO '[ZK]w_+' ORDER BY Name;
+
+-- CASE
+
+-- test database
+CREATE TABLE booltest (a BOOL, b BOOL);
+INSERT INTO booltest VALUES ('1', '0');
+SELECT * FROM booltest;
+SELECT
+    CASE WHEN a THEN 'TRUE' ELSE 'FALSE' END as boolA,
+    CASE WHEN b THEN 'TRUE' ELSE 'FALSE' END as boolB
+    FROM booltest;
+DROP TABLE IF EXISTS booltest;
+
+-- CAST
+
+CREATE TABLE t ( a INTEGER, b REAL );
+INSERT INTO t VALUES (123456789, 123456789);
+SELECT a, b FROM t;
+SELECT CAST(a AS REAL), b FROM t;
+SELECT CAST(a AS NUMERIC(15,2)), CAST(b AS NUMERIC(15,2)) FROM t;
+DROP TABLE IF EXISTS t;
